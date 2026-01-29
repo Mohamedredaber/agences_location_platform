@@ -1,0 +1,7 @@
+CREATE TABLE stagiaire (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cin VARCHAR(20) NOT NULL UNIQUE,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    age INT NOT NULL
+);

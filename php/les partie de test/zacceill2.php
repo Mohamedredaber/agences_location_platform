@@ -1,0 +1,315 @@
+<?php
+session_start();
+
+
+// Forcer la suppression de la session
+session_unset();       // Vide $_SESSION[]
+session_destroy();     // Supprime la session côté serveur
+// Supprimer le cookie de session (important si redirection continue malgré session_destroy)
+
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+require_once("connexiondata.php");
+$conn = connexion_data("localhost", "root", "", "agences");
+// Initialisation
+
+// $marque = '';
+// $resultats = [];
+// $date_actuel = date("Y-m-d");
+// $anne_actuel = (int) date("Y");
+// $requette = "SELECT a.*, i.chemin, ag.nom AS nom_agence
+//     FROM article_location a
+//      JOIN images i ON a.id_article_location = i.id_article_location
+//      JOIN agence ag ON a.id_agence = ag.id_agence
+//     WHERE a.statut = 'disponible' AND a.date_fin > :date_actuel AND a.date_debut <= :date_actuel";
+
+
+// $params = [":date_actuel" => $date_actuel];
+
+$date_actuel = date("Y-m-d");
+
+$requette = "SELECT a.* , i.chemin , ag.nom 
+    FROM article_location a
+     LEFT JOIN images i ON a.id_article_location = i.id_article_location
+     LEFT JOIN agence ag ON a.id_agence = ag.id_agence
+    WHERE a.statut = 'disponible' AND a.date_fin > :date_actuel AND a.date_debut <= :date_actuel";
+$params = [":date_actuel" => $date_actuel];
+
+// $params=[];
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_POST['marque'])) {
+        $requette .= " AND marque = :marque";
+        $params[':marque'] = $_POST['marque'];
+    }
+    if (!empty($_POST["prix"])) {
+        $prix = $_POST["prix"];
+        $filtresPrix = [
+            "1" => " AND (prix_location BETWEEN 100 AND 499)",
+            "2" => " AND (prix_location BETWEEN 500 AND 999)",
+            "3" => " AND (prix_location BETWEEN 1000 AND 1999)",
+            "4" => " AND (prix_location BETWEEN 2000 AND 5000)"
+        ];
+        
+        if (array_key_exists($prix, $filtresPrix)) {
+            $requette .= " " . $filtresPrix[$prix];
+        }
+    }
+    if (!empty($_POST["class"])) {
+        $requette .= " AND categorie =:categorie";
+        $params[':categorie'] = $_POST['class'];
+    }
+    if (!empty($_POST["model"])) {
+        $requette .=  " AND modele =:model";
+        $params[':model'] = $_POST['model'];
+    }
+    if (!empty($_POST['carburant'])) {
+        $requette .= " AND carburant =:carburant";
+        $params[':carburant'] = $_POST['carburant'];
+    }
+    if (!empty($_POST['type_boite'])) {
+        $requette .= " AND type_boite =:type_boite";
+        $params[':type_boite'] = $_POST['type_boite'];
+    }
+    if (!empty($_POST['nombre_place'])) {
+        $requette .= " AND nombre_place =:nombre_place";
+        $params[':nombre_place'] = $_POST['nombre_place'];
+    }
+    if (!empty($_POST['couleur'])) {
+        $requette .= " AND couleur = :couleur";
+        $params[':couleur'] = $_POST['couleur'];
+    }
+}
+
+?>
+<!-- logo / contact / about us / se conecte / create acount -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/accueill.css">
+    <link rel="stylesheet" href="../css/accueil1.css">
+    <link href="ofrre.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <nav>
+
+        <ul>
+            <img class="imgnav" src="../img/logo-class-pour-location-de-voiture-1.jpg" alt="">
+
+            <!-- <li><a href="" > logo</a> </li> -->
+            <li><a href=""> ACCUEIL</a></li>
+            <li><a href="../html/loginht.php"> SE CONECTER </a></li>
+            <li><a href="../html/verifierht.php"> SING UP</a> </li>
+            <li><a href=""> CONTACT</a> </li>
+            <li><a href=""> ABOUT US</a> </li>
+        </ul>
+    </nav>
+
+
+    <div class="parent">
+        <div class="row filtrer">
+            <div>
+                <h1>Filtrer par</h1>
+            </div>
+            <!-- Avant ta balise <form> -->
+           <?php 
+            $marque_selectionnee = $_POST['marque'] ?? '';
+            $_SESSION['marque_selectionnee']= $marque_selectionnee;
+             ?>
+            <div>
+           
+                <form action="" method="post">
+                    <select name="marque" onchange="this.form.submit()">
+                        <option value="" disabled <?= ($marque_selectionnee == '') ? 'selected' : '' ?>>Filtrer par marque disponible</option>
+
+                        <?php foreach ($resultat as $elem): ?>
+                            <option value="<?= htmlspecialchars($_SESSION['marque_selectionnee']) ?>" <?= ($marque_selectionnee == $_SESSION['marque_selectionnee']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($_SESSION['marque_selectionnee']) ?>
+                            </option>
+                    
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+            </div> 
+
+            <div>
+                <form action="" method="post">
+                    <select name="marque" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par marque disponible</option>
+                        <?php foreach ($resultat as $elem): ?>
+                            <option value="<?= htmlspecialchars($elem['marque']) ?>">
+                                <?= htmlspecialchars($elem['marque']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="prix" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par prix</option>
+                        <option value="1">100 - 499</option>
+                        <option value="2">500 - 999</option>
+                        <option value="3">1000 - 1999</option>
+                        <option value="4">2000 - 5000</option>
+
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="class" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par class</option>
+                        <option value="économique">économique</option>
+                        <option value="moyenne">moyenne</option>
+                        <option value="luxe">luxe</option>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="model" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par modèle</option>
+                        <?php
+                        $anne_actuel = (int) date("Y");
+                        for ($i = $anne_actuel - 5; $i <= $anne_actuel; $i++) {
+                            echo "<option value=\"$i\">$i</option>";
+                        }
+                        ?>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="carburant" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par type de carburant</option>
+                        <option value="Essence">Essence</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hybride">Hybride</option>
+                        <option value="Électrique">Électrique</option>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="type_boite" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par type de boite</option>
+                        <option value="Manuele">Manuele</option>
+                        <option value="Automatique">Automatique</option>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="type_boite" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par type de couleur disponible</option>
+                        <?php
+                        $selecter_couleur = $con->prepare("SELECT DISTINCT couleur FROM article_location");
+                        $selecter_couleur->execute();
+                        $resultat_couleur = $selecter_couleur->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <?php foreach ($resultat_couleur as $couleur): ?>
+                            <option value="<?= htmlspecialchars($couleur["couleur"])  ?>"><?= htmlspecialchars($couleur["couleur"])  ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+            </div>
+            <div>
+                <form action="" method="post">
+                    <select name="nombre_place" onchange="this.form.submit()">
+                        <option style="color: white;" value="" selected disabled>Filtrer par nombre de place disponible</option>
+                        <?php
+                        $selecter_place = $con->prepare("SELECT DISTINCT nombre_place FROM article_location");
+                        $selecter_place->execute();
+                        $resultat_place = $selecter_place->fetchAll(PDO::FETCH_ASSOC);
+                        ?>
+                        <?php foreach ($resultat_place as $place): ?>
+                            <option value="<?= htmlspecialchars($place["nombre_place"])  ?>"><?= htmlspecialchars($place["nombre_place"])  ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <!-- face2  -->
+
+
+
+
+<div style ='color : white ;'> <span style='color:red;'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae quidem sapiente suscipit eligendi, officia ad alias nobis esse optio consectetur labore voluptatum, error autem, quos veniam facere! Dolorem, nemo nesciunt!</span>
+<?php   
+
+foreach ($articles  as $offre) {
+    echo "<div class='ofr'>";
+
+    // Affichage de l'agence
+    echo "<span>AGENCE</span> <h3 style='font-weight:900;text-transform: uppercase;'><center>" . $offre['nom'] . "</center></h3>";
+
+    // Vérifier s'il y a des images
+    if (!empty($offre['images'])) {
+        // Afficher la première image
+        $firstImage = $offre['images'][0];
+        echo "<img class='imgoff' width='270px' height='350px' src='imgclient/logos/{$firstImage}'>";
+    } else {
+        // Image par défaut si aucune n'est disponible
+        echo "<img class='imgoff' width='270px' height='350px' src='imgclient/logos/default.jpg'>";
+    }
+    // Prix
+    echo "<center><span>PRIX</span><h3 style='size:40px;color: #15d215c9;'>" . $offre['prix_location'] . " DH</h3></center>";
+    // $total = $offre['prix_location'] + 100;
+    // echo "<center><h4 style='color:red;text-decoration: line-through;size:10px;'>" . $total . " DH</h4></center>";
+
+    // Description véhicule
+    echo "<div class='disc'>";
+    echo "<span>place : <h3>" . $offre['nombre_place'] . "</h3></span>";
+    echo "<span>porte : <h3>" . $offre['nombre_porte'] . "</h3></span>";
+    echo "<span>carburant : <h3>" . $offre['carburant'] . "</h3></span>";
+    echo "<span>kilométrage : <h3>" . $offre['kilometrage'] . "</h3></span>";
+    echo "<span>type de boîte : <h3>" . $offre['type_boite'] . "</h3></span>";
+    echo "</div>";
+
+    // Boutons d'action
+    echo "<form method='post' action='voirplus.php?id=" . $offre['id_article_location'] . "'>
+            <input type='hidden' name='id_agence' value='" . $offre['id_agence'] . "'>
+            <button type='submit' class='btnsavoir'>En savoir plus</button>
+        </form>";
+    
+    echo "<a href='reserver.php?id_article_location=" . $offre['id_article_location'] . "'>
+            <button class='btnreser'>Réserver</button>
+        </a>";
+
+    echo "</div>";
+}
+
+
+?>
+</div>
+                        </div>
+    </div>
+</body>
+
+</html>

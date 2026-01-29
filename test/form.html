@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>voitur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 26px;
+        }
+
+        .divinscri {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        input,
+        select,
+        textarea {
+            /* width: 80%; */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            /* font-size: 14px; */
+        }
+
+        input[type="submit"] {
+            background-color: #515151;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0794ec;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row>div {
+            flex: 1;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="inscrir" style="width: 20%; cursor: pointer;">
+
+    <div class="divinscri">
+
+        <h2>INSRIPTION</h2>
+        <center>
+            <table border="1">
+                <form action="" method="POST">
+
+                    <tr>
+                        <td style="width: 50%;">
+                            <label for="fullname">Name d'agence</label>
+                            <input type="text" id="fullname" name="fullname" required>
+
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+
+                            <label for="modpasse">Mod de Passe</label>
+                            <input type="text" id="modpasse" name="modpasse" required>
+
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </td>
+                        <td style="width: 50%;">
+                            <label for="car">Select Car</label>
+                            <select id="car" name="car" required>
+                                <option value="">-- Choose a Car --</option>
+                                <option value="renault">Renault Clio</option>
+                                <option value="peugeot">Peugeot 208</option>
+                                <option value="toyota">Toyota Yaris</option>
+                                <option value="audi">Audi A3</option>
+                            </select>
+
+                            <div class="rw">
+                                <div>
+                                    <label for="start">Start Date</label>
+                                    <input type="date" id="start" name="start" required>
+                                </div>
+                                <div>
+                                    <label for="end">End Date</label>
+                                    <input type="date" id="end" name="end" required>
+                                </div>
+                            </div>
+
+                            <label for="extras">Extras</label>
+                            <select id="extras" name="extras">
+                                <option value="">None</option>
+                                <option value="gps">GPS Navigation</option>
+                                <option value="babyseat">Baby Seat</option>
+                                <option value="insurance">Full Insurance</option>
+                            </select>
+
+         
+                           
+                            <input type="submit" value="Reserve Now">
+                        </td>
+                    </tr>
+
+
+                </form>
+            </table>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/formulaire.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/verifier.css">
+</head>
+<body>
+    <div class="black"> </div>
+    <img src="../imgs/Screenshot 2025-06-20 025212.png" class="imgg" alt="">
+    <img src="../imgs/Screenshot 2025-06-20 025212.png" alt="" class="immg">
+    <div class="form-containerr">
+        <div class="v1">
+            <h1>BONJOUR</h1>
+            <center>
+
+                <!-- <button class="btn btn-primary">hello</button> -->
+                <form action="../php/verifier.php" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <input required type="email" id="email" name="email">
+                    </div>
+                    <!-- <input type="button" name="btn" value="verification du email" onclick="Ferifier()">  -->
+                    <button class="button" name="submit" type="submit">envoyer le code</button>
+                    <!-- <div class="form-group"> <br>
+            <input  type="number" id="inputver" name="" placeholder="saisir le code ">
+            <span style="color: rgb(255, 131, 131);">verifier votre email et saisir le code </span> 
+        </div> -->
+                </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

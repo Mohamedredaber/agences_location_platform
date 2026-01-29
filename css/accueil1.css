@@ -1,0 +1,138 @@
+:root {
+  /* Background */
+  --bg-image: url("imgs/BMW.jfif");
+  --bg-blur: blur(10px);
+
+  /* Colors */
+  --black-bg-color: rgb(0, 0, 0);
+  --form-bg-color: #1a1a1a;
+  --form-border-color: rgba(255, 0, 0, 0.486);
+
+  /* Dimensions */
+  --black-width: 40vw;
+  --imgg-width: 20%;
+  --imgg-height: 100vh;
+  --imgg-left: 80vw;
+
+  --immg-width: 15%;
+  --immg-height: 60vh;
+  --immg-top: 9.9vw;
+  --immg-right: 20.5vw;
+
+  --form-width: 30em;
+  --form-height: 100vh;
+  --form-border: 1px solid rgba(255, 0, 0, 0.486);
+  --form-shadow: 0 0 20px #ff000079;
+  --form-right: 45em;
+  --form-top: 0em;
+
+  /* Spacing */
+  --v1-mt: 18vw;
+  --v1-mx: 40px;
+  --input-padding: 15px;
+}
+
+/* ========== Body ========== */
+body {
+  /* background-color: var(--black-bg-color); */
+  background-image: var(--bg-image);
+  backdrop-filter: var(--bg-blur);
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+/* ========== Navbar ========== */
+nav {
+  position: fixed;
+  width: 100%;
+  top: 30px;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  padding: 15px 5%;
+  background-color: #000000;
+  background-image: url("../imgs/téléchargement (6).jfif");
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+}
+
+ul li {
+  margin: 10px;
+  list-style: none;
+}
+
+ul li a {
+  text-decoration: none;
+  color: red;
+  font-size: medium;
+  font-weight: 900;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* ========== Image in Nav ========== */
+.imgnav {
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  width: 5vw;
+  height: 5vw;
+}
+
+/* ========== Section Filtrer ========== */
+.filtrer {
+  width: 20%;
+}
+
+.parent {
+  display: flex;
+  padding: 2em;
+  background-color: var(--black-bg-color);
+  color: white;
+}
+
+.row.filtrer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+  background-color: var(--form-bg-color);
+  border: 2px solid var(--form-border-color);
+  border-radius: 10px;
+  padding: 2em;
+  width: var(--form-width);
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+.row.filtrer h1 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--form-border-color);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.row.filtrer select {
+  width: 100%;
+  padding: var(--input-padding);
+  background-color: #1a1a1a;
+  color: white;
+  border: 1px solid var(--form-border-color);
+  border-radius: 5px;
+  font-size: 1em;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.row.filtrer select:hover,
+.row.filtrer select:focus {
+  border-color: #6666ff;
+}

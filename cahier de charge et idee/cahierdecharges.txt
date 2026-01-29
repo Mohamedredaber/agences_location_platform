@@ -1,0 +1,88 @@
+🧪 5. Étapes du projet
+Rédaction du cahier des charges ✔️
+
+Maquettage (wireframes des pages)
+
+Création de la base de données
+
+Développement Frontend
+
+Développement Backend
+
+Phase de test
+
+Déploiement en ligne
+✅ Résumé du projet de site web : Plateforme d’affiliation pour agences de location de voitures
+🎯 Objectif du projet
+Créer un site web qui sert d’intermédiaire entre les agences de location de voitures et les clients, permettant aux agences :
+
+de créer un compte,
+
+de publier des voitures à louer,
+
+et de recevoir des demandes ou des réservations via ton site.
+
+Le site prend une commission sur chaque réservation (modèle d’affiliation).
+
+🧱 Fonctionnalités principales
+🔐 Gestion des utilisateurs
+Création de comptes pour les agences
+
+Connexion / déconnexion
+
+Tableau de bord pour publier et gérer les annonces
+
+🚗 Annonces de véhicules
+Publication de voitures avec : photos, modèle, description, prix, ville
+
+Possibilité de modifier ou supprimer les annonces
+
+🔎 Recherche et navigation
+Interface client avec filtres (ville, prix, type)
+
+Consultation des fiches voitures détaillées
+
+🛒 Réservation
+Option 1 : Formulaire de contact avec l’agence (nom, e-mail, dates…)
+
+Option 2 : Redirection vers un lien affilié traçable
+
+📊 Administration
+Tableau de bord admin pour :
+
+Gérer les agences et annonces
+
+Suivre les réservations ou clics
+
+Calculer les commissions
+
+💰 Paiement / Commission
+✅ Cas 1 : Simple
+Le paiement se fait entre le client et l’agence
+
+Le site suit les clics ou demandes, et facture une commission à l’agence selon les résultats
+
+🔄 Cas 2 : Avancé (optionnel)
+Paiement en ligne intégré (Stripe/PayPal)
+
+Commission automatiquement prélevée avant transfert à l’agence
+
+📄 Résultats attendus
+Site responsive, fonctionnel et sécurisé
+
+Inscription et gestion d’agences opérationnelle
+
+Affichage et réservation de voitures fonctionnelle
+
+Interface administrateur avec suivi des activités
+
+Design professionnel, navigation fluide
+
+💡 Inspiration de sites similaires
+Rentalcars, DiscoverCars, Turo, Getaround
+
+Booking (section voitures), Kayak, Auto Europe
+
+Thèmes visuels sur Dribbble, ThemeForest
+
+Souhaites-tu que je transforme ce résumé + tout le contenu en un document Word ou PDF prêt à télécharger ?

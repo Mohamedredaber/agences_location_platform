@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Categorie Rental Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 40px;
+    }
+
+    .divagence {
+      background: white;
+      max-width: 60%;
+      margin: auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      /* display: flex; */
+
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    input, select, textarea {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #393939;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0f9500;
+    }
+ .agenc{
+    display: flex;
+ }
+   
+
+    @media (max-width: 600px) {
+      
+    }
+  </style>
+</head>
+<body>
+
+  <div class="divagence">
+    <h2>INSCRIPTION</h2>
+    <form class="agenc" action="#" method="POST">
+      <div style="width: 50%;">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="modpasse">Mod de Passe</label>
+      <input type="password" id="modpasse" name="modpasse" required>
+    </div>
+<div>
+      <label for="Categorie">Categorie</label>
+      <select id="Categorie" name="Categorie" required>
+        <option value="">-- Choose a Categorie --</option>
+        <option value="AGENCE">AGENCE</option>
+        <option value="INVESTOR">INVESTOR</option>
+        
+      </select>
+      <label for="ville">Ville</label>
+      <input type="text" id="ville" name="ville" required>
+
+      <!-- <?php moxkil howa fin ratla3 haddi knt bari nkhdmh b js omaa3raftx kifax 
+        $x = $_POST["Categorie"];
+        if($x == "AGENCE"){
+        echo"<label for="agence">Agence Name</label>;
+            <input type="text" id="agence" name="agence" required>;"
+            $idd = rand(10000,100000);
+        echo"votre ID c'est $idd" ;
+        }
+      ?> -->
+
+      
+
+      <label for="message">Additional Information</label>
+      <textarea id="message" name="message" rows="2"  placeholder="Any specific requests?"></textarea>
+
+      <input type="submit" value="Reserve Now">
+    </div>
+    </form>
+  </div>
+
+  <div class="seconnecter" style="max-width:70%; ">
+    <!-- xbannlk hna f se connecter nzido xi id dyaal agence matalan ida kan 
+    liraytconectaa howa agence n9ololo ara id dyaal agence ida kan investor 
+    sfi nkhaliw formulaire b7al haka mohim laknti adirhaa hak lcod dyala :: 
+    <label for="Categorie">Categorie</label>
+      <select id="Categorie" name="Categorie" required>
+        <option value="">-- Choose a Categorie --</option>
+        <option value="AGENCE">AGENCE</option>
+        <option value="INVESTOR">INVESTOR</option>
+      </select> <!-- <?php
+        $x = $_POST["Categorie"];
+        if($x == "AGENCE"){
+        echo"<input type="password" placeholder="saisir votre id" name="idagence" required>;"
+        }
+      ?> --> -->
+<h2>BONJOUR</h2>
+
+    <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="modpasse">Mod de Passe</label>
+      <input type="password" id="modpasse" name="modpasse" required>
+      <input type="submit" value="seconnecter">
+  </div>
+
+
+
+
+</body>
+</html>
